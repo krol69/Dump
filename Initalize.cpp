@@ -2,7 +2,7 @@
 
 bool Initialize(const std::string process_name)
 {
-    LPCSTR Parameters[] = { "", "-device", "fpga" };
+    LPCSTR Parameters[] = { "", "-device", device_type.c_str() };
     hVMM = VMMDLL_Initialize(3, Parameters);
 
     if (!hVMM) {
@@ -43,13 +43,13 @@ bool InitializeDLL(const std::string process_name, const std::string DLL_Name)
     if (!process_id)
     {
         printf("[!] Failed to get process id of %s\n", process_name);
-
+        return false;
     }
 
     if (!GetDLLModuleBase(process_id, DLL_Name))
     {
-        printf("[+] Failed to get base address/size of process 0x%lX (Error: %d)\n", DLL_base_address, GetLastError());
-
+        printf("[+] Failed to get base address/size of DLL 0x%lX (Error: %d)\n", DLL_base_address, GetLastError());
+        return false;
     }
 
     printf("[+] Base address: 0x%llX\n", DLL_base_address);

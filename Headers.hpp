@@ -26,6 +26,8 @@ struct Info
 extern VMM_HANDLE hVMM;
 extern std::string process_name;
 extern std::string DLL_Name;
+extern std::string output_path;
+extern std::string device_type;
 extern uint32_t process_id;
 extern HANDLE process_handle;
 extern ULONG64 process_base_address;

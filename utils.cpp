@@ -1,6 +1,9 @@
 #include "Headers.hpp"
 
 std::string get_path() {
+    if (!output_path.empty()) {
+        return output_path;
+    }
     char buffer[MAX_PATH];
     GetModuleFileNameA(NULL, buffer, MAX_PATH);
     std::string path(buffer);
