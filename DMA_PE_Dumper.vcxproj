@@ -146,11 +146,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="decryptor.cpp" />
     <ClCompile Include="dumper.cpp" />
     <ClCompile Include="Header.cpp" />
     <ClCompile Include="Initalize.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="memory.cpp" />
+    <ClCompile Include="scanner.cpp" />
     <ClCompile Include="start.cpp" />
     <ClCompile Include="utils.cpp" />
   </ItemGroup>

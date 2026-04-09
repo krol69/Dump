@@ -59,3 +59,32 @@ bool DumpExe();
 
 bool DumpDLL();
 
+// --- Scanner ---
+int64_t PatternScanBuffer(const uint8_t* data, size_t data_size, const std::string& pattern);
+std::vector<int64_t> PatternScanBufferAll(const uint8_t* data, size_t data_size, const std::string& pattern);
+uint64_t PatternScanRemote(uint64_t base_address, size_t region_size, const std::string& pattern);
+std::vector<uint64_t> PatternScanRemoteAll(uint64_t base_address, size_t region_size, const std::string& pattern);
+uint64_t ResolveRIPRelative(uint64_t match_address, int instruction_offset, int instruction_size);
+uint64_t PatternScanSection(const std::string& section_name, const std::string& pattern);
+uint64_t FindExport(uint64_t module_base, const std::string& export_name);
+void RunPatternScan(const std::string& pattern);
+
+// --- Decryptor ---
+uint64_t DecryptXOR(uint64_t encrypted_ptr, uint64_t key);
+uint64_t DecryptROL(uint64_t value, int bits);
+uint64_t DecryptROR(uint64_t value, int bits);
+uint64_t DecryptSUB(uint64_t encrypted_ptr, uint64_t key);
+uint64_t DecryptADD(uint64_t encrypted_ptr, uint64_t key);
+uint64_t DecryptNOT(uint64_t encrypted_ptr);
+uint64_t DecryptBSWAP(uint64_t value);
+uint64_t DecryptChain(uint64_t encrypted_ptr, const std::string& operations);
+
+// --- Pointer Chain ---
+uint64_t ReadPointerChain(uint64_t base, const std::vector<int64_t>& offsets);
+uint64_t ReadEncryptedPointer(uint64_t address, uint64_t xor_key);
+uint64_t ReadEncryptedPointerChain(uint64_t address, const std::string& operations);
+uint64_t ReadEncryptedPointerChainMulti(uint64_t base, const std::vector<int64_t>& offsets, const std::vector<uint64_t>& keys);
+uint64_t BruteforceXORKey(uint64_t encrypted_ptr_addr, uint64_t expected_base, size_t expected_size);
+void RunPointerDecrypt(uint64_t address, const std::string& operations);
+void RunPointerChainWalk(uint64_t base, const std::vector<int64_t>& offsets);
+
